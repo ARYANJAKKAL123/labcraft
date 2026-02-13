@@ -15,18 +15,22 @@ export interface Practical {
   id: string;
   manual_id: string;
   number: number;
+
   title: string;
-  aim: string;
-  theory: string;
-  algorithm: string;
-  code: string;
   language: string;
-  output_images: string[];
-  conclusion: string;
-  created_at: string;
+  code: string;
+
+  aim?: string;
+  theory?: string;
+  algorithm?: string;
+  conclusion?: string;
+
+  output_images?: string[];
+
+  created_at: string;   // ✅ MUST EXIST
   updated_at: string;
-  user_id: string;
 }
+
 
 export interface User {
   id: string;

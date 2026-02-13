@@ -31,13 +31,26 @@ export function usePracticals(manualId?: string) {
       : 1;
 
     const newPractical: Practical = {
-      ...data,
-      id: `practical_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      number: nextNumber,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
-      user_id: 'current_user',
-    };
+  id: crypto.randomUUID(), // temporary id
+  manual_id: manualId??"",
+
+  number: nextNumber,
+
+  title: data.title ?? "",
+  language: data.language ?? "plaintext",
+  code: data.code ?? "",
+
+  aim: data.aim,
+  theory: data.theory,
+  algorithm: data.algorithm,
+  conclusion: data.conclusion,
+
+  output_images: data.output_images ?? [],
+
+  created_at: new Date().toISOString(),
+  updated_at: new Date().toISOString(),
+};
+
 
     const saved = localDB.savePractical(newPractical);
     setPracticals(prev => [...prev, saved].sort((a, b) => a.number - b.number));
@@ -97,8 +110,8 @@ export function usePracticals(manualId?: string) {
     const lowerQuery = query.toLowerCase();
     return practicals.filter(p =>
       p.title.toLowerCase().includes(lowerQuery) ||
-      p.aim.toLowerCase().includes(lowerQuery) ||
-      p.theory.toLowerCase().includes(lowerQuery)
+      p.aim?.toLowerCase().includes(lowerQuery) ||
+      p.theory?.toLowerCase().includes(lowerQuery)
     );
   }, [practicals]);
 

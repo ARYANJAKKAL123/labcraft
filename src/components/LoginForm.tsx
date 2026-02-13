@@ -16,46 +16,47 @@ export default function LoginForm({ onLogin, isLoading, error }: Props) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-xl shadow-md w-80"
+  <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-violet-100 to-indigo-100">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-xl w-80 border border-white/40"
+    >
+      <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">
+        LabCraft Login
+      </h1>
+
+      <input
+        type="email"
+        placeholder="Email"
+        className="w-full mb-3 p-3 border rounded-lg focus:ring-2 focus:ring-violet-400"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        className="w-full mb-4 p-3 border rounded-lg focus:ring-2 focus:ring-violet-400"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      />
+
+      {error && (
+        <p className="text-red-500 text-sm mb-2 text-center">{error}</p>
+      )}
+
+      <button
+        type="submit"
+        disabled={isLoading}
+        className="w-full bg-violet-600 text-white py-2 rounded-lg hover:bg-violet-700"
       >
-        <h1 className="text-2xl font-bold text-center mb-6">
-          LabCraft Login
-        </h1>
+        {isLoading ? "Logging in..." : "Login"}
+      </button>
+    </form>
+  </div>
+);
 
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full mb-3 p-2 border rounded"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full mb-4 p-2 border rounded"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-
-        {error && (
-          <p className="text-red-500 text-sm mb-2 text-center">{error}</p>
-        )}
-
-        <button
-          type="submit"
-          disabled={isLoading}
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition disabled:opacity-50"
-        >
-          {isLoading ? "Logging in..." : "Login"}
-        </button>
-      </form>
-    </div>
-  );
 }
 
