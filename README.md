@@ -235,9 +235,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ---
 
 <p align="center">
-  Made with 💜 for diploma students everywhere!
-</p>
-
-<p align="center">
   <a href="https://github.com/yourusername/labcraft">⭐ Star this repo</a> if you find it helpful!
 </p>
